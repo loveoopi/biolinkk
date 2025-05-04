@@ -37,8 +37,8 @@ async def check_bio_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
     logging.info(f"Received message from {user} in group {chat_id}: {update.message.text}")
 
     if chat_id in active_groups:
-        # Regular expression to detect bio links
-        bio_link_pattern = re.compile(r'(?:https?:\/\/)?(?:www\.)?bio\.link\/\S+', re.IGNORECASE)
+        # Updated Regular Expression to detect bio links
+        bio_link_pattern = re.compile(r'(bio\.link/[^\s]+)', re.IGNORECASE)
         if bio_link_pattern.search(update.message.text):
             logging.info(f"Bio link detected in message from {user} in group {chat_id}. Deleting message.")
             await update.message.delete()
